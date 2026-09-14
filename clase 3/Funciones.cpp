@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include <sstream>
-#include <iomanip>
-#include <limits>
+#include <string>
 #include "Funciones.h"
 
 using namespace std;
@@ -11,13 +9,13 @@ using namespace std;
 // ==================== UTILIDADES DE ENTRADA ====================
 
 // Lee un entero entre min y max, repitiendo hasta que sea valido.
-int readIntInRange(const string& prompt, int min, int max) {
+int readIntInRange(string prompt, int min, int max) {
     int value;
     while (true) {
         cout << prompt;
         if (cin >> value && value >= min && value <= max) return value;
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(10000, '\n');
         cout << "Invalid value. Enter a number between " << min << " and " << max << "." << endl;
     }
 }
@@ -25,7 +23,8 @@ int readIntInRange(const string& prompt, int min, int max) {
 // Pausa hasta que el usuario presione Enter.
 void pause() {
     cout << "Press Enter to continue...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore(10000, '\n');
+    cin.get();
 }
 
 // ==================== NUMEROS ALEATORIOS ====================
@@ -53,42 +52,38 @@ bool numberAlreadyExistsInBoard(int matrix[8][4], int value, int startRow, int e
 }
 
 string formatCellValue(int value, bool isSelected) {
-    ostringstream oss;
-    string text = (value == -1) ? "XX" : to_string(value);   // tachada se ve como XX
-    if (isSelected) oss << "[" << setw(2) << setfill(' ') << text << "]";
-    else            oss << " " << setw(2) << setfill(' ') << text << " ";
-    return oss.str();
+    string text;
+    if (value == -1) text = "XX";
+    else {
+        text = to_string(value);
+        if (text.size() == 1) text = " " + text; // padding simple
+    }
+    if (isSelected) return "[" + text + "]";
+    return " " + text + " ";
 }
 
 void displayBoardSection(const int matrix[8][4], int startRow, int endRow, const string& title, int curRow, int curCol) {
     cout << title << "\n";
-    cout << "╭────┬────┬────┬────╮\n";
+    cout << "-------------------------" << "\n";
     for (int i = startRow; i < endRow; i++) {
-        cout << "│";
         for (int j = 0; j < 4; j++) {
             bool isCurrent = (i == curRow && j == curCol);
-            cout << formatCellValue(matrix[i][j], isCurrent) << "│";
+            cout << "|" << formatCellValue(matrix[i][j], isCurrent);
         }
-        cout << "\n";
-        if (i < endRow - 1) cout << "├────┼────┼────┼────┤\n";
+        cout << "|\n";
+        cout << "-------------------------" << "\n";
     }
-    cout << "╰────┴────┴────┴────╯\n";
 }
 
 void displayMatrix(int matrix[8][4]) {
-    cout << "\n" << "Player 1" << string(18, ' ') << "Player 2\n";
+    cout << "\nPlayer 1" << "                    " << "Player 2\n";
     for (int row = 0; row < 4; row++) {
-        cout << "╭────┬────┬────┬────╮    ╭────┬────┬────┬────╮\n";
-        cout << "│";
-        for (int col = 0; col < 4; col++)
-            cout << formatCellValue(matrix[row][col], false) << "│";
-        cout << "    │";
-        for (int col = 0; col < 4; col++)
-            cout << formatCellValue(matrix[row + 4][col], false) << "│";
-        cout << "\n";
-        if (row < 3) cout << "├────┼────┼────┼────┤    ├────┼────┼────┼────┤\n";
+        for (int col = 0; col < 4; col++) cout << "|" << formatCellValue(matrix[row][col], false);
+        cout << "|    ";
+        for (int col = 0; col < 4; col++) cout << "|" << formatCellValue(matrix[row + 4][col], false);
+        cout << "|\n";
+        cout << "----------------------------------------" << "\n";
     }
-    cout << "╰────┴────┴────┴────╯    ╰────┴────┴────┴────╯\n";
 }
 
 void set_all_zero(int matrix[8][4]) {

@@ -3,7 +3,7 @@
 
 #include <string>
 
-int  readIntInRange(const std::string& prompt, int min, int max);
+int  readIntInRange(std::string prompt, int min, int max);
 void fillMatrix(int matrix[8][4], int playOP);
 void playAgainstComputer(int matrix[8][4]);
 void playAgainstUser(int matrix[8][4]);
