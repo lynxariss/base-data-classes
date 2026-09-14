@@ -1,35 +1,11 @@
 #ifndef Funciones_H
-#define Funciones_H 
+#define Funciones_H
 
-void fillMatrixManually(int matrix[4][4]);
-void fillMatrixRandomly(int matrix[4][4]);
-void displayMatrix(int matrix[4][4], bool marked[4][4]);
+#include <string>
 
-bool repeatedNumber(int matrix[4][4], int number);
-bool hasDuplicates(int matrix[4][4]);
+int  readIntInRange(const std::string& prompt, int min, int max);
+void fillMatrix(int matrix[8][4], int playOP);
+void playAgainstComputer(int matrix[8][4]);
+void playAgainstUser(int matrix[8][4]);
 
-bool checkWinner(bool marked[4][4]);
-
-int checkNumber(
-    int matrix[4][4],
-    bool marked[4][4],
-    int number
-);
-
-int generateNumber(bool drawnNumbers[101]);
-
-void chooseBoard(
-    int matrix[4][4],
-    int player
-);
-
-void startGame(
-    int board1[4][4],
-    int board2[4][4],
-    bool againstComputer
-);
-
-void playAgainstComputer();
-void playAgainstUser();
-
-#endif 
+#endif

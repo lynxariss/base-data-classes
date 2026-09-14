@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -6,39 +5,29 @@
 
 using namespace std;
 
-int main(int argc, const char* argv[]) {
-    int option = 0;
-
-    srand(time(NULL));
+int main() {
+    int playOP = -1;
+    int matrix[8][4];
+    srand((unsigned)time(NULL));
 
     do {
-        cout << "Options Menu" << endl;
-        cout << "1. Play against the computer." << endl;
-        cout << "2. Play against another player." << endl;
-        cout << "0. Exit the system." << endl;
-        cout << "Select an option: ";
+        system("clear");
+        cout << "Play options\n"
+             << "1.- Play against the computer\n"
+             << "2.- Play against another player\n"
+             << "0.- Back to main menu\n" << endl;
+        playOP = readIntInRange("Select an option: ", 0, 2);
 
-        cin >> option;
-
-        switch (option) {
-        case 1:
-            playAgainstComputer();
-            break;
-
-        case 2:
-            playAgainstUser();
-            break;
-
-        case 0:
-            cout << "Closing system..." << endl;
-            break;
-
-        default:
-            cout << "Invalid option. Please select another option from the menu." << endl;
-            break;
+        switch (playOP) {
+            case 1:
+            case 2:
+                fillMatrix(matrix, playOP);
+                break;
+            case 0:
+                cout << "Closing system..." << endl;
+                break;
         }
-
-    } while (option != 0);
+    } while (playOP != 0);   // <-- ANTES: while (option != 0), option nunca cambiaba
 
     return 0;
 }
