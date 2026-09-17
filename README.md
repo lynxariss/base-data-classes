@@ -1,10 +1,8 @@
-# Numbers 
-made by: lyria and ale
+# Base Data Classes 
 
----
-### algorithm 
-basicly it takes 20 numbers from the user
-then we calculate the median and
-using the median we take 10 numbers > than the median
-and take 10 numbers < than the median
-and then we print 
+Here ill will save all my classes of base data, so basicly, we will learn about that 
+
+- Class 1: basic exercises with arrays and splitting data by range.
+- Class 2: matrix handling, entering and reading data in a table.
+- Class 3: bingo-style game project with boards, random numbers, and comparison.
+- Class 4: stack implementation with push, pop, and search operations.

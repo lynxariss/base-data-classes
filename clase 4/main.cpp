@@ -58,5 +58,58 @@ int pop(int pila[], int p){
 }
 
 int main(){
-    
+    int l = 10;
+    int pila[l];
+    int p =0;
+    int dato = 0;
+    int op = 0;
+
+    do{
+        cout<<"------menu--------\n"<<
+        "1.- agregar pila\n"<<
+        "2.- leer pila\n"<<
+        "3.- buscar dato\n"<<
+        "4.- Eliminar de la pila\n"
+        "5.- Vaciar pila\n"<<
+        "0.- Cerrar sistema\n"<<
+        "Opcion: ";
+        cin>>op;
+        switch (op)
+        {
+        case 1:
+            if(p < 1){
+                cout<<"ingresa el dato para insertar en la pila"<<endl;
+                cin>>dato;
+                push(pila,dato,p);
+            }else
+                cout<<"pila ";
+            break;
+        case 2:
+            if(!isEmpty(pila, p)){
+            dato = peek(pila, p);
+            }
+            break;
+        case 3:
+            if(!isEmpty(pila, p)){
+                cout<<"indica el numero a buscar"<<endl;
+                cin>>dato;
+                search(pila, dato, p);
+            }
+            break;
+        case  4:
+            if(!isEmpty(pila, p))
+                dato = pop(pila, p);
+            break;
+        case 5:
+            clear(pila, p);
+            break;
+        case 0:
+            cout<<"cerrando todo.."<<endl;
+            return true;
+            break;
+        default:
+            cout<<"opcion invalida";
+            break;
+        }
+    }while(true);
 }
