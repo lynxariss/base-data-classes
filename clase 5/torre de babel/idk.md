@@ -16,7 +16,7 @@
 ```
 ### ejemplo de uso con un codigo que hice:
 
-```
+```c++
 cout<<
         "╔════════════════════════════════╦══════════════╗\n"<<
         "║  listar productos              ║ precio       ║\n"<<
