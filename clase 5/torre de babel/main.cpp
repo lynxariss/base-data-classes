@@ -10,6 +10,7 @@ int main(){
         movement(size, turns);
         win(size);
         system("clear");
+        turns = movement(size, turns);
     }while (!win(size));
     display(size);
     cout<<"felicidades, acabaste en un total de "<<turns<<"turnos"<<endl;

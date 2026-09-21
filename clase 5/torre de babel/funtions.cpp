@@ -22,24 +22,27 @@ int movement(int size[7][3], int turns){
         cout << "Torre de destino (1-3): ";
         cin >> mtw;
 
-        // Pasar de 1-3 a índices 0-2
-        wtm--;
-        mtw--;
-
-        // Buscar el disco superior
-        disco = 0;
-
-        for(int i = 0; i < 7; i++){
-            if(size[i][wtm] != 0){
-                disco = size[i][wtm];
-                filaOrigen = i;
-                break;
-            }
+        if(wtm < 1 || wtm > 3 || mtw < 1 || mtw > 3){
+            cout<<"Error: selecciona torres del 1 al 3"<<endl;
         }
+        else{
+            // Pasar de 1-3 a índices 0-2
+            wtm--;
+            mtw--;
 
-        turns++;
-        if(!check_movement(size, mtw, wtm)){
-            cout<<"error, movimiento incorrecto"<<endl;
+            // Buscar el disco superior
+            disco = 0;
+
+            for(int i = 0; i < 7; i++){
+                if(size[i][wtm] != 0){
+                    disco = size[i][wtm];
+                    filaOrigen = i;
+                    break;
+                }
+            }
+            if(!check_movement(size, mtw, wtm)){
+                cout<<"error, movimiento incorrecto"<<endl;
+            }
         }
     }while (!check_movement(size, mtw, wtm));
 
