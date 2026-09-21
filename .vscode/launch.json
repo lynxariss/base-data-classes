@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/lyria/Descargas/github/base-data-classes/clase 4",
-      "program": "/home/lyria/Descargas/github/base-data-classes/clase 4/build/Debug/outDebug",
+      "cwd": "/home/lyria/Descargas/github/base-data-classes/clase 5/torre de babel",
+      "program": "/home/lyria/Descargas/github/base-data-classes/clase 5/torre de babel/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
