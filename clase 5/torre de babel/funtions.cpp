@@ -44,6 +44,7 @@ int movement(int size[7][3], int turns){
                 cout<<"error, movimiento incorrecto"<<endl;
             }
         }
+        turns++;
     }while (!check_movement(size, mtw, wtm));
 
     // Buscar dónde colocar el disco
