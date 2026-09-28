@@ -176,9 +176,12 @@ bool updateSong(Jukebox& jukebox, int artistIndex, int songIndex, const string& 
 
 //funtion aproved
 void showArtists(const Jukebox& jukebox) {
+    cout << "┌─── ELIGE UN ARTISTA ───┐\n";
     for (int i = 0; i < ARTIST_COUNT; i++) {
-        cout << i + 1 << ". " << jukebox.artists[i] << '\n';
+        cout << "│ " << i + 1 << ". " << jukebox.artists[i] <<"│"<< '\n';
     }
+    cout << "└────────────────────────┘\n";
+    cout << "Artista: ";
 }
 
 void showSongs(const Jukebox& jukebox, int artistIndex) {
@@ -186,9 +189,12 @@ void showSongs(const Jukebox& jukebox, int artistIndex) {
         return;
     }
 
+    cout << "┌─────── " << jukebox.artists[artistIndex] << " ──────┐\n";
     for (int i = 0; i < SONGS_PER_ARTIST; i++) {
-        cout << i + 1 << ". " << jukebox.songs[artistIndex][i] << '\n';
+        cout << "│ " << i + 1 << ". " << jukebox.songs[artistIndex][i]<< "│" << '\n';
     }
+    cout << "└───────────────────────┘\n";
+    cout << "Cancion: ";
 }
 
 void showPlaylist(const Jukebox& jukebox) {
