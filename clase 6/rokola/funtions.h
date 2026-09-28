@@ -1,96 +1,51 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef FUNTIONS_H
+#define FUNTIONS_H
 
 #include <iostream>
 #include <queue>
 #include <string>
+#include <vector>
+#include <iomanip>
 
 using namespace std;
 
-struct Song
-{
-    int id;
-    string title;
-    string artist;
-};
-
-const int TOTAL_ARTISTS = 10;
+const int ARTIST_COUNT = 10;
 const int SONGS_PER_ARTIST = 10;
 
-void loadArtists(string artists[TOTAL_ARTISTS][2]);
+struct SongSelection {
+    int artistIndex;
+    int songIndex;
+};
 
-void loadSongs(queue<Song>& songs);
+struct Jukebox {
+    string artists[ARTIST_COUNT];
+    string songs[ARTIST_COUNT][SONGS_PER_ARTIST];
+    queue<SongSelection> playlist;
+    int currentPosition;
+    bool paused;
+};
 
-void showMenu();
+void loadCatalog(Jukebox& jukebox);
+void initializeJukebox(Jukebox& jukebox);
+bool isValidSelection(int artistIndex, int songIndex);
+bool addSong(Jukebox& jukebox, int artistIndex, int songIndex);
+bool getSongAt(queue<SongSelection> playlist, int position, SongSelection& selection);
+bool getCurrentSong(const Jukebox& jukebox, SongSelection& selection);
+bool playSong(Jukebox& jukebox);
+bool pauseSong(Jukebox& jukebox);
+bool nextSong(Jukebox& jukebox);
+bool previousSong(Jukebox& jukebox);
+bool removeSong(Jukebox& jukebox, int position);
+void clearPlaylist(Jukebox& jukebox);
+bool updateSong(Jukebox& jukebox, int artistIndex, int songIndex, const string& newTitle);
+void showArtists(const Jukebox& jukebox);
+void showSongs(const Jukebox& jukebox, int artistIndex);
+void showPlaylist(const Jukebox& jukebox);
+bool runTests();
 
-void showArtists(string artists[TOTAL_ARTISTS][2]);
-
-void showAllSongs(const queue<Song>& songs);
-
-void showSongsByArtist(
-    const queue<Song>& songs,
-    const string& artist
-);
-
-int selectArtist(string artists[TOTAL_ARTISTS][2]);
-
-string getArtistName(
-    string artists[TOTAL_ARTISTS][2],
-    int artistIndex
-);
-
-void loadArtistQueue(
-    const queue<Song>& songs,
-    queue<int>& playbackQueue,
-    const string& artist
-);
-
-void clearQueue(queue<int>& playbackQueue);
-
-void showQueue(
-    queue<int> playbackQueue,
-    const queue<Song>& songs
-);
-
-void playCurrentSong(
-    const queue<int>& playbackQueue,
-    const queue<Song>& songs
-);
-
-void nextSong(
-    queue<int>& playbackQueue,
-    queue<int>& history
-);
-
-void previousSong(
-    queue<int>& playbackQueue,
-    queue<int>& history
-);
-
-void addSong(queue<Song>& songs);
-
-void deleteSong(queue<Song>& songs, int songId);
-
-void updateSong(queue<Song>& songs, int songId);
-
-int findSongById(
-    const queue<Song>& songs,
-    int id
-);
-
-void showSong(const Song& song);
-
-int countSongsByArtist(
-    const queue<Song>& songs,
-    const string& artist
-);
-
-bool isQueueEmpty(
-    const queue<int>& playbackQueue
-);
-
-void pauseProgram();
-
-void clearScreen();
+//menu
+void showShortMenu();
+void showLongMenu(const Jukebox& jukebox);
+void showDeleteMenu();
 
 #endif
